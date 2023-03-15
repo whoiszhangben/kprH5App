@@ -7,8 +7,10 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-const NODE_ENV = process.env.NODE_ENV;
+const NODE_ENV = process.env.NODE_ENV || "development";
+console.log("config:", config, "node-env:", NODE_ENV);
 const { mockUrl } = config[NODE_ENV];
+
 const isDev = NODE_ENV === "development";
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
