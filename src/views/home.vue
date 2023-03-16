@@ -3,49 +3,61 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <div class="nav-footer">
-      <footer>
-        <router-link
-          v-for="(item, index) in navList"
+    <footer>
+      <van-tabbar v-model="active" route>
+        <van-tabbar-item
+          replace
+          :icon="item.key"
+          icon-prefix="iconfont"
+          v-for="item in navList"
           :to="item.path"
-          :key="index"
-          v-bind:class="{ active: activeRoute == item.path }"
+          :key="item.key"
         >
-          <i class="iconfont" :class="'icon-tab' + index"></i>
-          <p v-text="item.name"></p>
-        </router-link>
-      </footer>
-    </div>
+          {{ item.name }}
+        </van-tabbar-item>
+      </van-tabbar>
+    </footer>
   </div>
 </template>
 
 <script>
+import { Tabbar, TabbarItem } from "vant";
 export default {
   data() {
     return {
+      active: "main",
       navList: [
         {
+          key: "main",
           path: "/index",
           name: "主页",
         },
         {
+          key: "map",
           path: "/map",
           name: "地图",
         },
         {
+          key: "rank",
           path: "/rank",
           name: "排名",
         },
         {
+          key: "alert",
           path: "/alert",
           name: "告警",
         },
         {
+          key: "center",
           path: "/center",
           name: "我的",
         },
       ],
     };
+  },
+  components: {
+    [Tabbar.name]: Tabbar,
+    [TabbarItem.name]: TabbarItem,
   },
   computed: {
     activeRoute() {
@@ -61,9 +73,5 @@ export default {
   position: fixed;
   left: 0px;
   bottom: 0px;
-  width: 100%;
-  height: 40px;
-  background: #1e2140;
-  display: block;
 }
 </style>

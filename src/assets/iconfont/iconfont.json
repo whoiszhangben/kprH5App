@@ -2,9 +2,44 @@
   "id": "3955024",
   "name": "kprH5App",
   "font_family": "iconfont",
-  "css_prefix_text": "icon-",
+  "css_prefix_text": "iconfont-",
   "description": "",
   "glyphs": [
+    {
+      "icon_id": "201228",
+      "name": "3.1我的",
+      "font_class": "center",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1104501",
+      "name": "地图类_地图",
+      "font_class": "map",
+      "unicode": "e9c0",
+      "unicode_decimal": 59840
+    },
+    {
+      "icon_id": "1263349",
+      "name": "主页",
+      "font_class": "main",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "15659294",
+      "name": "告警",
+      "font_class": "alert",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "15811198",
+      "name": "line-ranking",
+      "font_class": "rank",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
     {
       "icon_id": "9472083",
       "name": "密码",

@@ -13,7 +13,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: (resolve) => require(["@/views/home"], resolve),
-    redirect: "/center",
+    redirect: "/index",
     children: [
       {
         path: "/index",

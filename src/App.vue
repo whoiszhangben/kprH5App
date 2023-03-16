@@ -32,10 +32,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.page {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-</style>
+<style lang="scss"></style>

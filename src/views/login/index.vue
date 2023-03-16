@@ -15,7 +15,7 @@
           slot="left-icon"
           class="iconfont"
           color="#ffffff"
-          class-prefix="icon"
+          class-prefix="iconfont"
           name="userName"
         ></van-icon>
       </van-field>
@@ -29,7 +29,7 @@
           slot="left-icon"
           class="iconfont"
           color="#ffffff"
-          class-prefix="icon"
+          class-prefix="iconfont"
           name="userPwd"
         ></van-icon>
       </van-field>
@@ -39,13 +39,23 @@
       <a>IP设置</a>
     </div>
     <div class="submit">
-      <van-button round type="info" block>登录</van-button>
+      <van-button
+        round
+        type="info"
+        :loading="loading"
+        :loading-text="loadingText"
+        block
+        @click="loginAction"
+      >
+        登录
+      </van-button>
     </div>
   </div>
 </template>
 
 <script>
 import { CellGroup, Field, Icon, Button } from "vant";
+import { mapMutations } from "vuex";
 export default {
   name: "Login",
   components: {
@@ -58,7 +68,26 @@ export default {
     return {
       userName: "",
       userPwd: "",
+      loading: false,
+      loadingText: "",
     };
+  },
+  methods: {
+    ...mapMutations({
+      setUserInfo: "user/SET_USER_INFO",
+    }),
+    loginAction() {
+      this.loading = true;
+      this.loadingText = "登录中";
+      setTimeout(() => {
+        this.loading = false;
+        this.setUserInfo({
+          name: "zk",
+          isLogin: true,
+        });
+        this.$router.push("/");
+      }, 1000);
+    },
   },
 };
 </script>
@@ -68,16 +97,14 @@ export default {
   width: 100vw;
   height: 100vh;
   background: url("../../assets/img/background.jpg");
+  display: grid;
+  grid-template-rows: 320px 240px 240px 240px;
   .logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-      margin: 60px 0 120px;
-    }
   }
   .title {
-    margin-bottom: 220px;
     font-size: 24px;
     font-weight: 700;
     color: white;
@@ -110,7 +137,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 60px 0;
     color: #c8c8c8;
     font-size: 14px;
   }
