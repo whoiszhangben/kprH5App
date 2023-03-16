@@ -13,7 +13,6 @@
       >
         <van-icon
           slot="left-icon"
-          class="iconfont"
           color="#ffffff"
           class-prefix="iconfont"
           name="userName"
@@ -27,7 +26,6 @@
       >
         <van-icon
           slot="left-icon"
-          class="iconfont"
           color="#ffffff"
           class-prefix="iconfont"
           name="userPwd"

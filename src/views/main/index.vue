@@ -31,21 +31,61 @@
         </div>
       </div>
       <div class="desc">
-        <div class="temp">
-
-        </div>
-        <div class="weather"></div>
-        <div class="humidity"></div>
-        <div class="windy"></div>
+        <van-grid>
+          <van-grid-item class="temp" icon="photo-o" text="22 ℃">
+            <template #icon>
+              <van-icon
+                class-prefix="iconfont"
+                name="wendu"
+                size="24"
+                color="#009FE8"
+              ></van-icon>
+            </template>
+          </van-grid-item>
+          <van-grid-item class="weather" text="晴">
+            <template #icon>
+              <van-icon
+                class-prefix="iconfont"
+                name="tianqi"
+                size="24"
+                color="#FFCB01"
+              ></van-icon>
+            </template>
+          </van-grid-item>
+          <van-grid-item class="humidity" text="45%">
+            <template #icon>
+              <van-icon
+                class-prefix="iconfont"
+                name="shidu"
+                size="24"
+                color="#333333"
+              ></van-icon>
+            </template>
+          </van-grid-item>
+          <van-grid-item class="windy" text="南风 6级">
+            <template #icon>
+              <van-icon
+                class-prefix="iconfont"
+                name="windy"
+                size="24"
+                color="#000000"
+              ></van-icon>
+            </template>
+          </van-grid-item>
+        </van-grid>
       </div>
     </div>
-    <div class="air-tabs"></div>
+    <div class="air-tabs">
+      <van-tabs type="card" color="#0093FD">
+        <van-tab title="空气质量"></van-tab>
+      </van-tabs>
+    </div>
     <div class="order"></div>
   </div>
 </template>
 
 <script>
-import { NavBar, Button, Icon } from "vant";
+import { NavBar, Button, Icon, Grid, GridItem, Tabs, Tab } from "vant";
 import AqiOverview from '@/components/AqiOverview.vue';
 export default {
   name: "Index",
@@ -53,6 +93,10 @@ export default {
     [NavBar.name]: NavBar,
     [Button.name]: Button,
     [Icon.name]: Icon,
+    [Grid.name]: Grid,
+    [GridItem.name]: GridItem,
+    [Tabs.name]: Tabs,
+    [Tab.name]: Tab,
     AqiOverview
   },
   data() {
@@ -107,9 +151,9 @@ export default {
       }
     }
     .desc {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      ::v-deep .van-grid-item__text {
+        font-size: 16px !important;
+      }
     }
   }
 }

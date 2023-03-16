@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1314403",
+      "name": "温度",
+      "font_class": "wendu",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "12842736",
+      "name": "w_湿度",
+      "font_class": "shidu",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "13956656",
+      "name": "风力预测方案",
+      "font_class": "windy",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "14626446",
+      "name": "天气-雷电天气",
+      "font_class": "tianqi-leidiantianqi",
+      "unicode": "e6dc",
+      "unicode_decimal": 59100
+    },
+    {
+      "icon_id": "27074245",
+      "name": "天气",
+      "font_class": "tianqi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "201228",
       "name": "3.1我的",
       "font_class": "center",
