@@ -67,8 +67,9 @@ const option = {
         show: false,
       },
       max: 500,
+      center: ["50%", "50%"],
       splitLine: {
-        distance: -30,
+        distance: -28,
         length: 30,
         lineStyle: {
           color: '#fff',
@@ -77,7 +78,7 @@ const option = {
       },
       axisLabel: {
         color: 'inherit',
-        distance: -30,
+        distance: -28,
         fontSize: 14
       },
       detail: {
