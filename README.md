@@ -21,3 +21,5 @@ $ yarn & yarn dev
 ## 其他
 
 1. 如果要将此项目用做 `PC` 端基础模板的话，则只需删除移动端适配相关代码，即 `postcss-px-to-viewport` 插件相关配置内容即可。
+
+2. 地图json文件下载 http://datav.aliyun.com/portal/school/atlas/area_selector 

@@ -96,7 +96,7 @@ export default {
   height: 100vh;
   background: url("../../assets/img/background.jpg");
   display: grid;
-  grid-template-rows: 320px 240px 240px 240px;
+  grid-template-rows: 4fr 3fr 3fr 3fr 6fr;
   .logo {
     display: flex;
     align-items: center;

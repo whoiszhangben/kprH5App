@@ -91,6 +91,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -105,22 +106,29 @@ nav,
 section {
   display: block;
 }
-html,body,.page{
+
+html,
+body,
+.page {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
+
 body {
   line-height: 1.15;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -128,7 +136,12 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.fw700 {
+  font-weight: 700;
 }

@@ -104,6 +104,11 @@ export default {
             }
         }
     },
+    data() {
+      return {
+      aqiChart: null,
+      }
+    },
     computed: {
         aqicolor() {
             let dataVal = Number(this.current.aqi);
@@ -125,9 +130,21 @@ export default {
     mounted() {
         this.$nextTick(() => {
             let chartDom = document.getElementById('mychart');
-            let chart = echarts.init(chartDom);
-            chart.setOption(option);
+            if (!this.aqiChart) {
+              this.aqiChart = echarts.init(chartDom);
+              window.addEventListener("resize", function() {
+                this.aqiChart.resize();
+              });
+            }
+            this.aqiChart.setOption(option);
         })
+    },
+    destroyed() {
+      if (this.aqiChart) {
+        window.removeEventListener("resize");
+        this.aqiChart.dispose();
+        this.aqiChart = null;
+      }
     }
 }
 </script>

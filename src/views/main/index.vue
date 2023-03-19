@@ -2,8 +2,13 @@
   <div class="index">
     <van-nav-bar :title="title">
       <template #left>
-        <van-button type="info" size="small" class="area-btn">
-          >{{ area }}
+        <van-button
+          type="info"
+          size="small"
+          class="area-btn"
+          @click.stop="toggleArea"
+        >
+          >{{ area.name }}
         </van-button>
       </template>
       <template #right>
@@ -12,15 +17,13 @@
     </van-nav-bar>
     <div class="aqi-overview">
       <div class="air">
-        <aqi-overview></aqi-overview>
+        <cus-aqi-chart class="left"></cus-aqi-chart>
         <div class="right">
-          <div class="noise">
+          <div class="noise" :style="{'visibility': area.type === 'zone' ? '' : 'hidden'}">
             <div class="title">
               <van-icon name="volume" size="1.5rem" color="#d81e06" />噪音
             </div>
-            <div class="value">
-              {{ current.noise }} dB
-            </div>
+            <div class="value">{{ current.noise }} dB</div>
           </div>
           <div class="noise">
             <div class="title">首要污染物</div>
@@ -76,17 +79,47 @@
       </div>
     </div>
     <div class="air-tabs">
-      <van-tabs type="card" color="#0093FD">
-        <van-tab title="空气质量"></van-tab>
+      <van-tabs type="card" color="#0093FD" class="cus-tabs">
+        <van-tab title="空气质量">
+          <cus-air-layout :title="airfactorTitle">
+            <div class="airfactorCont">
+              <cus-progress
+                v-for="item in airfactorList"
+                :key="item.name"
+                :current="item"
+              ></cus-progress>
+            </div>
+          </cus-air-layout>
+          <cus-air-layout :title="airZoneDistributeTitle">
+            <cus-map-distribute :type="area.type"></cus-map-distribute>
+          </cus-air-layout>
+          <cus-air-layout :title="airZoneLevelTitle"></cus-air-layout>
+        </van-tab>
+        <van-tab title="噪声" v-if="area.type !== 'city'"></van-tab>
       </van-tabs>
+      <cus-datetime-picker class="air-datepicker"></cus-datetime-picker>
     </div>
     <div class="order"></div>
   </div>
 </template>
 
 <script>
-import { NavBar, Button, Icon, Grid, GridItem, Tabs, Tab } from "vant";
-import AqiOverview from '@/components/AqiOverview.vue';
+import {
+  NavBar,
+  Button,
+  Icon,
+  Grid,
+  GridItem,
+  Tabs,
+  Tab,
+  DatetimePicker,
+} from "vant";
+import cusAqiChart from "@/components/cusAqiChart.vue";
+import cusDatetimePicker from "@/components/cusDatetimePicker";
+import CusDatetimePicker from "@/components/cusDatetimePicker.vue";
+import cusAirLayout from "@/components/cusAirLayout.vue";
+import CusProgress from "@/components/cusProgress.vue";
+import CusMapDistribute from "@/components/cusMapDistribute.vue";
 export default {
   name: "Index",
   components: {
@@ -97,23 +130,81 @@ export default {
     [GridItem.name]: GridItem,
     [Tabs.name]: Tabs,
     [Tab.name]: Tab,
-    AqiOverview
+    [DatetimePicker.name]: DatetimePicker,
+    cusAqiChart,
+    cusDatetimePicker,
+    CusDatetimePicker,
+    cusAirLayout,
+    CusProgress,
+    CusMapDistribute,
   },
   data() {
     return {
       updateTime: "2023/3/16 11:37:20",
-      area: "深圳市",
+      area: {
+        name: "深圳市",
+        type: "city",
+      },
       current: {
         noise: 88.0,
         aqi: 32,
-        pollute: "O3"
-      }
+        pollute: "O3",
+      },
+      currentDate: new Date(),
+      airfactorTitle: "全市空气因子数据",
+      airZoneDistributeTitle: "各区AQI图示",
+      airZoneLevelTitle: "各区空气质量等级",
+      airfactorList: [],
     };
   },
   computed: {
     title() {
       return `更新时间：${this.updateTime}`;
     },
+  },
+  methods: {
+    toggleArea() {
+      this.area.type = this.area.type === "city" ? "zone" : "city";
+      if (this.area.type === "city") {
+        this.area.name = "深圳市";
+      } else {
+        this.area.name = "福田区";
+      }
+    },
+  },
+  mounted() {
+    this.airfactorList = [
+      {
+        name: "pm2.5",
+        value: 51,
+        unit: "ug/m",
+      },
+      {
+        name: "pm10",
+        value: 51,
+        unit: "ug/m",
+      },
+      {
+        name: "no2",
+        value: 51,
+        unit: "ug/m",
+      },
+      {
+        name: "so2",
+        value: 51,
+        unit: "ug/m",
+      },
+      {
+        name: "o3",
+        value: 51,
+        unit: "ug/m",
+      },
+      {
+        name: "co",
+        value: 51,
+        unit: "ug/m",
+      },
+    ];
   },
 };
 </script>
@@ -133,6 +224,9 @@ export default {
     .air {
       display: flex;
       flex-flow: row;
+      .left {
+        margin: 20px 0 -40px 0;
+      }
       .right {
         width: 400px;
         display: flex;
@@ -156,6 +250,24 @@ export default {
       }
     }
   }
+  .air-tabs {
+    position: relative;
+    padding: 20px 0;
+    .cus-tabs {
+      ::v-deep .van-tabs__wrap {
+        width: fit-content;
+      }
+      ::v-deep .van-tab {
+        min-width: 130px;
+      }
+    }
+    .air-datepicker {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      width: 340px;
+    }
+  }
 }
 .area-btn {
   min-width: 160px;
@@ -169,5 +281,11 @@ export default {
   outline: 1px dotted;
   padding: 0px 16px;
   outline-offset: 2px;
+}
+.airfactorCont {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 16px 0;
 }
 </style>
