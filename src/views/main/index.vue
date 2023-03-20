@@ -211,6 +211,8 @@ export default {
 
 <style lang="scss" scoped>
 .index {
+  height: calc(100% - 100px);
+  overflow-y: overlay;
   ::v-deep .van-nav-bar {
     background-color: #409eff;
   }
