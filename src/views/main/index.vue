@@ -93,7 +93,9 @@
           <cus-air-layout :title="airZoneDistributeTitle">
             <cus-map-distribute :type="area.type"></cus-map-distribute>
           </cus-air-layout>
-          <cus-air-layout :title="airZoneLevelTitle"></cus-air-layout>
+          <cus-air-layout :title="airZoneLevelTitle">
+            <cus-air-level-list></cus-air-level-list>
+          </cus-air-layout>
         </van-tab>
         <van-tab title="噪声" v-if="area.type !== 'city'"></van-tab>
       </van-tabs>
@@ -115,11 +117,11 @@ import {
   DatetimePicker,
 } from "vant";
 import cusAqiChart from "@/components/cusAqiChart.vue";
-import cusDatetimePicker from "@/components/cusDatetimePicker";
-import CusDatetimePicker from "@/components/cusDatetimePicker.vue";
+import cusDatetimePicker from "@/components/cusDatetimePicker.vue";
 import cusAirLayout from "@/components/cusAirLayout.vue";
-import CusProgress from "@/components/cusProgress.vue";
-import CusMapDistribute from "@/components/cusMapDistribute.vue";
+import cusProgress from "@/components/cusProgress.vue";
+import cusMapDistribute from "@/components/cusMapDistribute.vue";
+import cusAirLevelList from "@/components/cusAirLevelList.vue";
 export default {
   name: "Index",
   components: {
@@ -133,10 +135,10 @@ export default {
     [DatetimePicker.name]: DatetimePicker,
     cusAqiChart,
     cusDatetimePicker,
-    CusDatetimePicker,
     cusAirLayout,
-    CusProgress,
-    CusMapDistribute,
+    cusProgress,
+    cusMapDistribute,
+    cusAirLevelList
   },
   data() {
     return {

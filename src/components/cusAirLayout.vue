@@ -23,6 +23,7 @@ export default {
   .title {
     position: relative;
     padding: 0 16px;
+    font-size: 16px;
   }
   .title::before {
     content: "";
